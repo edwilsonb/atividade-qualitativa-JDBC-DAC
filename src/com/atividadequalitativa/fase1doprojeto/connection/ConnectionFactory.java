@@ -9,7 +9,7 @@ public class ConnectionFactory {
 	public Connection getConnection() throws ClassNotFoundException {
 		try {
 			Class.forName("org.postgresql.Driver");
-			return DriverManager.getConnection("jdbc:postgresql://localhost:5432/atividade1", "postgres", "ads13");
+			return DriverManager.getConnection("jdbc:postgresql://localhost:5432/Banco_Dac", "postgres", "postgr");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
