@@ -4,13 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.atividadequalitativa.fase1doprojeto.connection.ConnectionFactory;
 import com.atividadequalitativa.fase1doprojeto.entities.Editora;
 
 public class EditoraDao {
 	
-	// a conexão com o banco de dados.
+	// A conexão com o banco de dados.
 	
 	private Connection connection;
 	
@@ -22,7 +24,8 @@ public class EditoraDao {
 		String sql = "create table editoras ("
 				+ "id_editora serial primary key,"
 				+ "nome_editora varchar(100) not null,"
-				+ "ano_fundacao varchar(10) not null_)";
+				+ "ano_fundacao varchar(10) not null)";
+		
 		try {
 			// Preparando statement para criar tabela.
 			
@@ -33,11 +36,11 @@ public class EditoraDao {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);			
 		}				
-	}
-	
+	}	
 	
 	public void insereEditora(Editora editora) {
-		String sql = "insert into editoras (id_editora, nome_editora, ano_fundacao) values (?,?,?)";
+		String sql = "insert into editoras (nome_editora, ano_fundacao) values (?,?)";
+		
 		try {
 			
 			// Preparando statement para inserção.
@@ -46,9 +49,8 @@ public class EditoraDao {
 			
 			// Seta os valores.
 			
-			stmt.setLong(1, editora.getIdEditora());
-			stmt.setString(2, editora.getNomeEditora());
-			stmt.setString(3, editora.getAnoFundacao());
+			stmt.setString(1, editora.getNomeEditora());
+			stmt.setString(2, editora.getAnoFundacao());
 			stmt.execute();
 			stmt.close();
 			
@@ -58,7 +60,8 @@ public class EditoraDao {
 	}
 	
 	public Editora byId(Long id) {
-		String sql = "select * from Editoras where id=?";
+		String sql = "select * from Editoras where id_editora=?";
+		
 		try {
 			PreparedStatement stmt = this.connection.prepareStatement(sql);
 			stmt.setLong(1, id);
@@ -77,31 +80,63 @@ public class EditoraDao {
 			throw new RuntimeException(e);
 		}
 	}
+		
+	public List<Editora> all(){
+		
+			try {
+			
+				List<Editora> editoras = new ArrayList<Editora>();
+				PreparedStatement stmt = this.connection.prepareStatement("select * from editoras");
+				ResultSet rs = stmt.executeQuery();
+			
+				while (rs.next()) {
+				
+					// Criando o objeto Editora
+				
+					Editora editora = new Editora();
+					editora.setIdEditora(rs.getLong("id_editora"));
+					editora.setNomeEditora(rs.getString("nome_editora"));
+					editora.setAnoFundacao(rs.getString("ano_fundacao"));
+					
+					editora.add(editora);				
+				}
+				rs.close();
+				stmt.close();
+				return editoras;
+			
+			}catch (SQLExeception e) {
+				throw new RuntimeException(e);
+			}
+		}
 	
-//	public Editora buscarEditoraComLivros(long id) {
-//		String sql = "select edi.id_editora, nome_editora, ano_publicacao \n"
-//				+ "FROM editoras edi\n"
-//				+ "INNER JOIN livros d on edi.id_livros = d.id\n"
-//				+ "WHERE edi.id=?";
-//		try {
-//			
-//			PreparedStatement  stmt = this.connection.prepareStatement(sql);
-//			stmt.setLong(1, id);
-//			ResultSet rs = stmt.executeQuery();
-//			Editora editora = new Editora();
-//			while (rs.next()) {
-//				//criando a editora
-//				
-//				editora.setIdEditora(rs.getString("id_editora"));
-//				editora.set
-//				
-//			}			
-//			
-//		}
-//			
-//		} catch (SQLExecption e) {
-//			throw new RuntimeException(e);
-//			
-//		}
+	public void atualizar(Editora editora, long id) {
+		String sql = "update editoras set nome_editora=?, ano_fundacao=? where id_editora=?";
+		
+		try {
+				PreparedStatement stmt = connection.prepareStatement(sql);
+				stmt.setString(1, editora.getNomeEditora());
+				stmt.setString(2, editora.getAnoFundacao());
+				stmt.setLong(3, id);
+				stmt.execute();
+				stmt.close();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 	
-}
+	public void excluir(long id) {
+		
+		try {			
+				PreparedStatement stmt = connection.prepareStatement("delete from editoras where id_editora=?");
+				stmt.setLong(1, id);
+				stmt.execute();
+				stmt.close();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	
+	}
