@@ -98,13 +98,13 @@ public class EditoraDao {
 					editora.setNomeEditora(rs.getString("nome_editora"));
 					editora.setAnoFundacao(rs.getString("ano_fundacao"));
 					
-					editora.add(editora);				
+					editoras.add(editora);				
 				}
 				rs.close();
 				stmt.close();
 				return editoras;
 			
-			}catch (SQLExeception e) {
+			}catch (SQLException e) {
 				throw new RuntimeException(e);
 			}
 		}
