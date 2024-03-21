@@ -13,17 +13,35 @@ public class Main {
 		
 		// Criando Tabela Editora.
 		
-		EditoraDao editoraDao = new EditoraDao(); // Não comentar
+		EditoraDao editoraDao = new EditoraDao(); // Não comentar essa linha.
 		
 		/*editoraDao.criaTabelaEditora();
 		System.out.println("Tabela Criada Com Sucesso");*/
 		
 		// Insere nova Editora
 		
-		Editora editora = new Editora(); // Não comentar
+		Editora editora = new Editora(); // Não comentar essa linha.
 		
-		/*editoraDao.insereEditora(editora);
-		System.out.println("Editora Cadastrada Com Sucesso!");*/
+		/*editora.setNomeEditora("Editora panini");
+		editora.setAnoFundacao("1961");		
+		editoraDao.insereEditora(editora);
+		System.out.println("Editora Cadastrada Com Sucesso!");*/	
+		
+		
+		//Listar Todas as Editoras.
+		
+		/*List<Editora> editoras = editoraDao.all();
+		
+		if (editoras.isEmpty()) {
+			System.out.println("Nenhum Editora Cadastrada!");
+		} else {
+			for (Editora edi: editoras) {
+				System.out.println("\nId da editora: " + edi.getIdEditora());
+				System.out.println("Nome da editora: " + edi.getNomeEditora());
+				System.out.println("Ano da fundaçao: " + edi.getAnoFundacao());
+			}
+		}*/
+		
 		
 		// Buscar Editora por Id.
 		
@@ -39,27 +57,40 @@ public class Main {
 		
 		//Atualizar Editora.
 		
-		/*editora.setNomeEditora("panini ");
-		editora.setAnoFundacao("1961");
-		editoraDao.atualizar(editora,1L);
-		System.out.println("Editora Atualizada Com Sucesso!");*/
+		/*editora.setNomeEditora("Editora jbc ");
+		editora.setAnoFundacao("1995");
+		long editoraId = 2L;
+		Boolean editoraExiste = editoraDao.byId(editoraId).getIdEditora() != null ? true : false;
+		if (editoraExiste) {
+			editoraDao.atualizar(editora, editoraId);
+			System.out.println("Editora atualizada com sucesso!");
+		} else {
+			System.out.println("Id inválido, nenhuma editora foi atualizada!");
+		}*/
 		
 		//Excluir Editora 
 		
-		/*editoraDao.excluir(3L);
-		System.out.println("Editora Excluida Com Sucesso!");*/
+		/*long editoraId = 2L;
+		Boolean editoraExiste = editoraDao.byId(editoraId).getIdEditora() != null ? true : false;
+		if (editoraExiste) {
+			editoraDao.excluir(editoraId);
+			System.out.println("Editora excluída com sucesso!");
+		} else {
+			System.out.println("Id inválido, nenhuma editora foi excluída!");
+		}*/
+		
 		
 
 		// Criando tabela livros
 		
-		LivroDao livroDao = new LivroDao(); // Não comentar
+		LivroDao livroDao = new LivroDao(); // Não comentar essa linha.
 		
 		/*livroDao.criaTabelaLivro();
 		System.out.println("Tabela livros criada com sucesso");*/
 				
 		// Insere novo livro
 				
-		Livro livro = new Livro(); // Não comentar
+		Livro livro = new Livro(); // Não comentar essa linha.
 		
 		/*livro.setNome("Duna");
 		livro.setAnoPublicacao("1965");
