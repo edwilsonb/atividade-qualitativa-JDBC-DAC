@@ -3,9 +3,11 @@ package com.atividadequalitativa.fase1doprojeto.main;
 import java.util.List;
 
 import com.atividadequalitativa.fase1doprojeto.dao.EditoraDao;
+import com.atividadequalitativa.fase1doprojeto.dao.LivrariaDao;
 import com.atividadequalitativa.fase1doprojeto.dao.LivroDao;
 import com.atividadequalitativa.fase1doprojeto.entities.Editora;
 import com.atividadequalitativa.fase1doprojeto.entities.Livro;
+import com.atividadequalitativa.fase1doprojeto.entities.Livraria;
 
 public class Main {
 
@@ -16,16 +18,17 @@ public class Main {
 		EditoraDao editoraDao = new EditoraDao(); // Não comentar essa linha.
 		
 		/*editoraDao.criaTabelaEditora();
-		System.out.println("Tabela Criada Com Sucesso");*/
+		System.out.println("Tabela Editora Criada Com Sucesso");*/
+		
 		
 		// Insere nova Editora
 		
 		Editora editora = new Editora(); // Não comentar essa linha.
 		
-		/*editora.setNomeEditora("Editora panini");
-		editora.setAnoFundacao("1961");		
+		/*editora.setNomeEditora("Companhia das Letras");
+		editora.setAnoFundacao("1986");		
 		editoraDao.insereEditora(editora);
-		System.out.println("Editora Cadastrada Com Sucesso!");*/	
+		System.out.println("Editora Cadastrada Com Sucesso!");*/
 		
 		
 		//Listar Todas as Editoras.
@@ -55,6 +58,7 @@ public class Main {
 			System.out.println("Id inválido, editora não encontrada!");
 		}*/
 		
+		
 		//Atualizar Editora.
 		
 		/*editora.setNomeEditora("Editora jbc ");
@@ -68,6 +72,7 @@ public class Main {
 			System.out.println("Id inválido, nenhuma editora foi atualizada!");
 		}*/
 		
+		
 		//Excluir Editora 
 		
 		/*long editoraId = 2L;
@@ -80,22 +85,23 @@ public class Main {
 		}*/
 		
 		
-
 		// Criando tabela livros
 		
 		LivroDao livroDao = new LivroDao(); // Não comentar essa linha.
 		
 		/*livroDao.criaTabelaLivro();
 		System.out.println("Tabela livros criada com sucesso");*/
-				
+
+		
 		// Insere novo livro
 				
 		Livro livro = new Livro(); // Não comentar essa linha.
 		
-		/*livro.setNome("Duna");
-		livro.setAnoPublicacao("1965");
+		/*livro.setNome("O Hobbit");
+		livro.setAnoPublicacao("1937");
 		livroDao.insereLivro(livro);
 		System.out.println("Livro inserido com sucesso");*/
+		
 		
 		// Busca todos os livros
 		
@@ -111,6 +117,7 @@ public class Main {
 			}
 		}*/
 	
+		
 		// Busca livro por Id
 
 		/*long livroId = 2L;
@@ -122,6 +129,7 @@ public class Main {
 		} else {
 			System.out.println("Id inválido, nenhum livro foi encontrado!");
 		}*/
+		
 		
 		// Atualizar livro
 		
@@ -135,10 +143,11 @@ public class Main {
 		} else {
 			System.out.println("Id inválido, nenhum livro foi atualizado!");
 		}*/
-				
+			
+		
 		// Excluir livro 
 				
-		/*long livroId = 5L;
+		/*long livroId = 2L;
 		Boolean livroExiste = livroDao.byId(livroId).getId() != null ? true : false;
 		if (livroExiste) {
 			livroDao.excluir(livroId);
@@ -146,6 +155,36 @@ public class Main {
 		} else {
 			System.out.println("Id inválido, nenhum livro foi excluído!");
 		}*/
+		
+		
+		// Criando tabela livraria, responsável pelo relacionamento entre livro e editora
+		
+		LivrariaDao livrariaDao = new LivrariaDao(); // Não comentar essa linha
+				
+		/*livrariaDao.criaTabelaLivraria();
+		System.out.println("Tabela livraria criada com sucesso");*/
+			
+		
+		// Inserindo relacionamento na tabela livraria
+				
+		/*livro = livroDao.byId(1L);
+		editora = editoraDao.byId(1L);
+		livrariaDao.insereLivraria(livro, editora);
+		System.out.println("Relacionamento inserido com sucesso!");*/
 
+		
+		// Lista todos os relacionamentos da tabela livraria
+		
+		/*List<Livraria> relacionamentos = livrariaDao.all();
+
+		if (relacionamentos.isEmpty()) {
+			System.out.println("Nenhum relacionamento cadastrado");
+		} else {
+			for (Livraria r: relacionamentos) {
+				System.out.println("\nRelacionamento:");
+				System.out.println("Id do livro: " + r.getLivro().getId());
+				System.out.println("Id da editora: " + r.getEditora().getIdEditora());
+			}
+		}*/
 	}	
 }
